@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 const IndexPage: React.FC = () => {
   return (
     <div css={layoutStyle}>
-      Hello!
+      Hello.
     </div>
   )
 }
