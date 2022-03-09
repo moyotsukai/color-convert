@@ -30,7 +30,7 @@ const inputStyle = css`
   cursor: pointer;
   outline: none;
   background-color: #aabbf2;
-  width: 150px;
+  width: 160px;
   height: 6px;
   border-radius: 3px;
   margin: 14px 10px;
