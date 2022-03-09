@@ -50,9 +50,37 @@ const ConverterHSV: React.FC = () => {
   const onHsvTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value
     setHsvText(text)
-    //TODO
-    //setHsv
-    //setSharedRgba
+
+    const splitted = text.split(", ")
+    const parsed = splitted.map((item: string, index) => {
+      const num = parseInt(item)
+      if (isNaN(num)) { return null }
+      if (index === 0 && num > 360) { return 360 }
+      if (index === 0 && num < 0) { return 0 }
+      if (index !== 0 && num > 100) { return 100 }
+      if (index !== 0 && num < 0) { return 0 }
+      return num
+    })
+    const isNumber = !parsed.includes(null)
+    if (isNumber && parsed.length === 3) {
+      const newHsv = { h: parsed[0], s: parsed[1], v: parsed[2] }
+      setChanged(newHsv)
+    }
+  }
+
+  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const text = e.target.value
+    setHsvText(text)
+
+    const splitted = text.split(", ")
+    const parsed = splitted.map((item: string, index) => {
+      const num = parseInt(item)
+      if (isNaN(num)) { return null }
+      return num
+    })
+    if (parsed.includes(null)) {
+      setHsvText(toHsvText(hsv))
+    }
   }
 
   return (
@@ -82,7 +110,7 @@ const ConverterHSV: React.FC = () => {
         <SupportingText size="13px">
           HSV
         </SupportingText>
-        <TextInput value={hsvText} onChange={onHsvTextChange} tabIndex={11} />
+        <TextInput value={hsvText} onChange={onHsvTextChange} onBlur={onBlur} tabIndex={11} />
         <CopyButton text={hsvText} />
       </div>
     </div>

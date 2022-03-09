@@ -46,6 +46,7 @@ const ConverterRGBA: React.FC = () => {
     setRgba(newRgba)
     setRgbText(toRgbText(newRgba))
     setRgbaText(toRgbaText(newRgba))
+
     const newSharedRgba: RGBA = { ...newRgba, editedFrom: "Rgba" }
     setSharedRgba(newSharedRgba)
   }
@@ -61,19 +62,59 @@ const ConverterRGBA: React.FC = () => {
   const onRgbTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value
     setRgbText(text)
-    //TODO
-    //setRgba
-    //setSharedRgba
+
+    const splitted = text.split(", ")
+    const parsed = splitted.map((item: string) => {
+      const num = parseInt(item)
+      if (isNaN(num)) { return null }
+      if (num > 255) { return 255 }
+      if (num < 0) { return 0 }
+      return num
+    })
+    const isNumber = !parsed.includes(null)
+    if (isNumber && parsed.length === 3) {
+      const newRgba = { r: parsed[0], g: parsed[1], b: parsed[2], a: rgba.a }
+      setChanged(newRgba)
+    }
   }
 
   const onRgbaTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value
     setRgbaText(text)
-    //TODO
-    //setRgba
-    //setSharedRgba
+
+    const splitted = text.split(", ")
+    const parsed = splitted.map((item: string, index) => {
+      if (index === 3 && item === "0.") { return null }
+      const num = index === 3 ? parseFloat(item) : parseInt(item)
+      if (isNaN(num)) { return null }
+      if (index < 3 && num > 255) { return 255 }
+      if (index < 3 && num < 0) { return 0 }
+      if (index === 3 && num > 1) { return 1 }
+      if (index === 3 && num < 0) { return 0 }
+      return num
+    })
+    const isNumber = !parsed.includes(null)
+    if (isNumber && parsed.length === 4) {
+      const newRgba = { r: parsed[0], g: parsed[1], b: parsed[2], a: parsed[3] }
+      setChanged(newRgba)
+    }
   }
 
+  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const text = e.target.value
+    setRgbaText(text)
+
+    const splitted = text.split(", ")
+    const parsed = splitted.map((item: string) => {
+      const num = parseInt(item)
+      if (isNaN(num)) { return null }
+      return num
+    })
+    if (parsed.includes(null)) {
+      setRgbText(toRgbText(rgba))
+      setRgbaText(toRgbaText(rgba))
+    }
+  }
 
   return (
     <div css={containerStyle}>
@@ -109,14 +150,14 @@ const ConverterRGBA: React.FC = () => {
         <SupportingText size="13px">
           RGB
         </SupportingText>
-        <TextInput value={rgbText} onChange={onRgbTextChange} tabIndex={6} />
+        <TextInput value={rgbText} onChange={onRgbTextChange} onBlur={onBlur} tabIndex={6} />
         <CopyButton text={rgbText} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="13px">
           RGBA
         </SupportingText>
-        <TextInput value={rgbaText} onChange={onRgbaTextChange} tabIndex={7} />
+        <TextInput value={rgbaText} onChange={onRgbaTextChange} onBlur={onBlur} tabIndex={7} />
         <CopyButton text={rgbaText} />
       </div>
     </div>

@@ -4,6 +4,7 @@ import { css } from '@emotion/react'
 type Props = {
   value: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void,
   tabIndex?: number
 }
 
@@ -19,6 +20,7 @@ const TextInput: React.FC<Props> = (props) => {
       onChange={props.onChange}
       tabIndex={props.tabIndex}
       onFocus={onFocus}
+      onBlur={props.onBlur}
       css={inputStyle}
     />
   )
