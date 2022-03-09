@@ -7,14 +7,14 @@ import { useRgbaContext } from '../Context/RgbaContext'
 import ConverterHSV from '../functional/ConverterHSV'
 
 const IndexPage: React.FC = () => {
-  const { rgba } = useRgbaContext()
+  const { sharedRgba } = useRgbaContext()
 
   return (
     <div css={layoutStyle}>
       <div css={() => colorBackgroundStyle({ r: 255, g: 255, b: 255, a: 1 })} >
-        <div css={() => colorObjectStyle(rgba)} />
+        <div css={() => colorObjectStyle(sharedRgba)} />
         <Spacer x={20} />
-        <p css={() => colorTextStyle(rgba)} >
+        <p css={() => colorTextStyle(sharedRgba)} >
           Color Converter
         </p>
       </div>
@@ -38,6 +38,8 @@ const colorBackgroundStyle = (rgba: RGBA) => css`
   height: 30vh;
   min-width: 160px;
   min-height: 160px;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,6 +59,13 @@ const colorTextStyle = (rgba: RGBA) => css`
   font-size: 28px;
 `
 const converterContainerStyle = css`
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media(max-width: 350px) {
+  }
 `
 export default IndexPage

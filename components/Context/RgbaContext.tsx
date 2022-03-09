@@ -1,14 +1,14 @@
-import React, { createContext, Dispatch, SetStateAction, useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { RGBA } from '../../types/Colors.type'
 
 type RgbaContext = {
-  rgba: RGBA,
-  setRgba: Dispatch<SetStateAction<RGBA>>
+  sharedRgba: RGBA,
+  setSharedRgba: (sharedRgba: RGBA) => void
 }
 
 const defaultRgbaContext: RgbaContext = {
-  rgba: { r: 0, g: 0, b: 0, a: 1 },
-  setRgba: () => { }
+  sharedRgba: { r: 0, g: 0, b: 0, a: 1 },
+  setSharedRgba: () => { }
 }
 
 const RgbaContext = createContext<RgbaContext>(defaultRgbaContext)
@@ -22,11 +22,11 @@ type Props = {
 }
 
 export const RgbaProvider: React.FC<Props> = (props) => {
-  const [rgba, setRgba] = useState<RGBA>({ r: 0, g: 0, b: 0, a: 1 })
+  const [sharedRgba, setSharedRgba] = useState<RGBA>({ r: 0, g: 0, b: 0, a: 1 })
 
   const value: RgbaContext = {
-    rgba,
-    setRgba
+    sharedRgba,
+    setSharedRgba
   }
 
   return (

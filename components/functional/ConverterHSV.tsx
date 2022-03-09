@@ -3,58 +3,68 @@ import { css } from '@emotion/react'
 import { useRgbaContext } from '../Context/RgbaContext'
 import { toHsvaFromRgb } from '../../converter/toHsvFromRgb'
 import { toRgbFromHsva } from '../../converter/toRgbFromHsv'
-import { RGBA } from '../../types/Colors.type'
+import { HSV, RGBA } from '../../types/Colors.type'
+import RangeInput from '../ui/RangeInput'
+import NumberInput from '../ui/NumberInput'
 
 const ConverterHSV: React.FC = () => {
-  const { rgba, setRgba } = useRgbaContext()
-  const [h, setH] = useState<number>(0)
-  const [s, setS] = useState<number>(0)
-  const [v, setV] = useState<number>(0)
+  const { sharedRgba, setSharedRgba } = useRgbaContext()
+  const [hsv, setHsv] = useState<HSV>({ h: 0, s: 0, v: 0 })
 
   //toHsvaFromRgb
   useEffect(() => {
-    if (rgba.editedFrom === "Hsva") { return }
-    const hsv = toHsvaFromRgb(rgba)
-    setH(hsv.h)
-    setS(hsv.s)
-    setV(hsv.v)
-  }, [rgba])
+    if (sharedRgba.editedFrom === "Hsv") { return }
+    const newHsv = toHsvaFromRgb(sharedRgba)
+    setHsv({ h: newHsv.h, s: newHsv.s, v: newHsv.v, })
+  }, [sharedRgba])
 
   const onChangeH = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setH(parseInt(e.target.value))
-    const newRgba: RGBA = toRgbFromHsva({ h: parseInt(e.target.value), s: s, v: v, a: rgba.a })
-    setRgba({ ...newRgba, editedFrom: "Hsva" })
+    const newH = parseInt(e.target.value)
+    setHsv({ h: newH, s: hsv.s, v: hsv.v })
+    const newRgba: RGBA = toRgbFromHsva({ h: newH, s: hsv.s, v: hsv.v, a: sharedRgba.a })
+    setSharedRgba({ ...newRgba, editedFrom: "Hsv" })
   }
   const onChangeS = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setS(parseInt(e.target.value))
-    const newRgba: RGBA = toRgbFromHsva({ h: h, s: parseInt(e.target.value), v: v, a: rgba.a })
-    setRgba({ ...newRgba, editedFrom: "Hsva" })
+    const newS = parseInt(e.target.value)
+    setHsv({ h: hsv.h, s: newS, v: hsv.v })
+    const newRgba: RGBA = toRgbFromHsva({ h: hsv.h, s: newS, v: hsv.v, a: sharedRgba.a })
+    setSharedRgba({ ...newRgba, editedFrom: "Hsv" })
   }
   const onChangeV = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setV(parseInt(e.target.value))
-    const newRgba: RGBA = toRgbFromHsva({ h: h, s: s, v: parseInt(e.target.value), a: rgba.a })
-    setRgba({ ...newRgba, editedFrom: "Hsva" })
+    const newV = parseInt(e.target.value)
+    setHsv({ h: hsv.h, s: hsv.s, v: newV })
+    const newRgba: RGBA = toRgbFromHsva({ h: hsv.h, s: hsv.s, v: newV, a: sharedRgba.a })
+    setSharedRgba({ ...newRgba, editedFrom: "Hsv" })
   }
 
   return (
-    <div>
-      <div>
+    <div css={containerStyle}>
+      <div css={groupStyle}>
         <span>H</span>
-        <input type="range" min={0} max={360} step={1} value={h} onChange={onChangeH} />
-        <input type="number" min={0} max={360} step={1} value={h} onChange={onChangeH} />
+        <RangeInput min={0} max={360} step={1} value={hsv.h} onChange={onChangeH} tabIndex={-1} />
+        <NumberInput min={0} max={360} step={1} value={hsv.h} onChange={onChangeH} tabIndex={6} />
       </div>
-      <div>
+      <div css={groupStyle}>
         <span>S</span>
-        <input type="range" min={0} max={100} step={1} value={s} onChange={onChangeS} />
-        <input type="number" min={0} max={100} step={1} value={s} onChange={onChangeS} />
+        <RangeInput min={0} max={100} step={1} value={hsv.s} onChange={onChangeS} tabIndex={-1} />
+        <NumberInput min={0} max={100} step={1} value={hsv.s} onChange={onChangeS} tabIndex={7} />
       </div>
-      <div>
+      <div css={groupStyle}>
         <span>V</span>
-        <input type="range" min={0} max={100} step={1} value={v} onChange={onChangeV} />
-        <input type="number" min={0} max={100} step={1} value={v} onChange={onChangeV} />
+        <RangeInput min={0} max={100} step={1} value={hsv.v} onChange={onChangeV} tabIndex={-1} />
+        <NumberInput min={0} max={100} step={1} value={hsv.v} onChange={onChangeV} tabIndex={8} />
       </div>
     </div>
   )
 }
+
+const containerStyle = css`
+  margin: 10px;
+`
+const groupStyle = css`
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+`
 
 export default ConverterHSV

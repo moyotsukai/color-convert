@@ -8,14 +8,18 @@ export const toHsvaFromRgb = (rgba: RGBA): HSVA => {
     if (maxValue - minValue === 0) {
       return 0
     }
+
     if (maxValue === rgba.r) {
-      return 60 * ((rgba.g - rgba.b) / (maxValue - minValue))
+      const h = 60 * ((rgba.g - rgba.b) / (maxValue - minValue))
+      return h < 0 ? h + 360 : h
     }
     if (maxValue === rgba.g) {
-      return 60 * ((rgba.b - rgba.r) / (maxValue - minValue)) + 120
+      const h = 60 * ((rgba.b - rgba.r) / (maxValue - minValue)) + 120
+      return h < 0 ? h + 360 : h
     }
     if (maxValue === rgba.b) {
-      return 60 * ((rgba.r - rgba.g) / (maxValue - minValue)) + 240
+      const h = 60 * ((rgba.r - rgba.g) / (maxValue - minValue)) + 240
+      return h < 0 ? h + 360 : h
     }
   }
 
