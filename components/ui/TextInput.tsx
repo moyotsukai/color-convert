@@ -4,13 +4,20 @@ import { css } from '@emotion/react'
 type Props = {
   value: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void,
+  onEnterKey?: () => void
+  onBlur?: () => void,
   tabIndex?: number
 }
 
 const TextInput: React.FC<Props> = (props) => {
   const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.select()
+  }
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      props.onEnterKey()
+    }
   }
 
   return (
@@ -20,6 +27,7 @@ const TextInput: React.FC<Props> = (props) => {
       onChange={props.onChange}
       tabIndex={props.tabIndex}
       onFocus={onFocus}
+      onKeyDown={onKeyDown}
       onBlur={props.onBlur}
       css={inputStyle}
     />

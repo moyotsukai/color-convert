@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import { RGBA } from '../../types/Colors.type'
+import { RGBA } from '../types/Colors.type'
 
 type RgbaContext = {
   sharedRgba: RGBA,

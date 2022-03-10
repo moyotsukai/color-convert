@@ -1,4 +1,4 @@
-export type ColorTypes = "Rgba" | "Hsv"
+export type ColorTypes = "Hex" | "Rgba" | "Hsv"
 
 export type RGBA = {
   r: number,

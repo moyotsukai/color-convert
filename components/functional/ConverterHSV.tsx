@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { useRgbaContext } from '../Context/RgbaContext'
+import { useRgbaContext } from '../../context/RgbaContext'
 import { toHsvaFromRgb } from '../../converter/toHsvFromRgb'
 import { toRgbFromHsva } from '../../converter/toRgbFromHsv'
 import { HSV, RGBA } from '../../types/Colors.type'
@@ -15,7 +15,7 @@ const ConverterHSV: React.FC = () => {
   const [hsv, setHsv] = useState<HSV>({ h: 0, s: 0, v: 0 })
   const [hsvText, setHsvText] = useState<string>("0, 0, 0")
 
-  //toHsvaFromRgb
+  //To hsv from sharedHsv
   useEffect(() => {
     if (sharedRgba.editedFrom === "Hsv") { return }
     const newHsv = toHsvaFromRgb(sharedRgba)
@@ -68,19 +68,8 @@ const ConverterHSV: React.FC = () => {
     }
   }
 
-  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const text = e.target.value
-    setHsvText(text)
-
-    const splitted = text.split(", ")
-    const parsed = splitted.map((item: string, index) => {
-      const num = parseInt(item)
-      if (isNaN(num)) { return null }
-      return num
-    })
-    if (parsed.includes(null)) {
-      setHsvText(toHsvText(hsv))
-    }
+  const onChangeFocus = () => {
+    setHsvText(toHsvText(hsv))
   }
 
   return (
@@ -110,7 +99,7 @@ const ConverterHSV: React.FC = () => {
         <SupportingText size="13px">
           HSV
         </SupportingText>
-        <TextInput value={hsvText} onChange={onHsvTextChange} onBlur={onBlur} tabIndex={11} />
+        <TextInput value={hsvText} onChange={onHsvTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={11} />
         <CopyButton text={hsvText} />
       </div>
     </div>
@@ -118,7 +107,7 @@ const ConverterHSV: React.FC = () => {
 }
 
 const containerStyle = css`
-  margin: 10px;
+  margin: 20px;
 `
 const groupStyle = css`
   display: flex;

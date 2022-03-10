@@ -3,8 +3,9 @@ import { css } from '@emotion/react'
 import { RGBA } from '../../types/Colors.type'
 import Spacer from '../ui/Spacer'
 import ConverterRGBA from '../functional/ConverterRGBA'
-import { useRgbaContext } from '../Context/RgbaContext'
+import { useRgbaContext } from '../../context/RgbaContext'
 import ConverterHSV from '../functional/ConverterHSV'
+import ConverterHex from '../functional/ConverterHex'
 
 const IndexPage: React.FC = () => {
   const { sharedRgba } = useRgbaContext()
@@ -20,6 +21,7 @@ const IndexPage: React.FC = () => {
       </div>
 
       <div css={converterContainerStyle}>
+        <ConverterHex />
         <ConverterRGBA />
         <ConverterHSV />
       </div>
@@ -40,11 +42,16 @@ const colorBackgroundStyle = (rgba: RGBA) => css`
   min-height: 160px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 10px 20px;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
   border-radius: 12px;
+
+  @media(max-width: 500px) {
+    flex-wrap: wrap;
+  }
 `
 const colorObjectStyle = (rgba: RGBA) => css`
   background-color: rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a});

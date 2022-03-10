@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { useRgbaContext } from '../Context/RgbaContext'
+import { useRgbaContext } from '../../context/RgbaContext'
 import { RGBA } from '../../types/Colors.type'
 import RangeInput from '../ui/RangeInput'
 import NumberInput from '../ui/NumberInput'
@@ -14,7 +14,7 @@ const ConverterRGBA: React.FC = () => {
   const [rgbText, setRgbText] = useState<string>("0, 0, 0")
   const [rgbaText, setRgbaText] = useState<string>("0, 0, 0, 1")
 
-  //toRgbaFromCommonRgba
+  //To rgba from sharedRgba
   useEffect(() => {
     if (sharedRgba.editedFrom === "Rgba") { return }
     const newRgba = { r: sharedRgba.r, g: sharedRgba.g, b: sharedRgba.b, a: sharedRgba.a }
@@ -100,20 +100,9 @@ const ConverterRGBA: React.FC = () => {
     }
   }
 
-  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const text = e.target.value
-    setRgbaText(text)
-
-    const splitted = text.split(", ")
-    const parsed = splitted.map((item: string) => {
-      const num = parseInt(item)
-      if (isNaN(num)) { return null }
-      return num
-    })
-    if (parsed.includes(null)) {
-      setRgbText(toRgbText(rgba))
-      setRgbaText(toRgbaText(rgba))
-    }
+  const onChangeFocus = () => {
+    setRgbText(toRgbText(rgba))
+    setRgbaText(toRgbaText(rgba))
   }
 
   return (
@@ -150,14 +139,14 @@ const ConverterRGBA: React.FC = () => {
         <SupportingText size="13px">
           RGB
         </SupportingText>
-        <TextInput value={rgbText} onChange={onRgbTextChange} onBlur={onBlur} tabIndex={6} />
+        <TextInput value={rgbText} onChange={onRgbTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={6} />
         <CopyButton text={rgbText} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="13px">
           RGBA
         </SupportingText>
-        <TextInput value={rgbaText} onChange={onRgbaTextChange} onBlur={onBlur} tabIndex={7} />
+        <TextInput value={rgbaText} onChange={onRgbaTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={7} />
         <CopyButton text={rgbaText} />
       </div>
     </div>
@@ -165,7 +154,7 @@ const ConverterRGBA: React.FC = () => {
 }
 
 const containerStyle = css`
-  margin: 10px;
+  margin: 20px;
 `
 const groupStyle = css`
   display: flex;

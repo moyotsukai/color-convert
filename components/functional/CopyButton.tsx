@@ -29,6 +29,8 @@ const CopyButton: React.FC<Props> = (props) => {
 const buttonStyle = css`
   width: 60px;
   height: 30px;
+  padding: 0;
+  text-align: center;
   cursor: pointer;
   outline: none;
   border: none;
