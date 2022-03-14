@@ -6,6 +6,7 @@ type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   onEnterKey?: () => void
   onBlur?: () => void,
+  width?: string
   tabIndex?: number
 }
 
@@ -29,15 +30,15 @@ const TextInput: React.FC<Props> = (props) => {
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       onBlur={props.onBlur}
-      css={inputStyle}
+      css={() => inputStyle(props.width)}
     />
   )
 }
 
-const inputStyle = css`
+const inputStyle = (width: string = "170px") => css`
   outline: none;
   border: solid 2px #e6ebff;
-  width: 170px;
+  width: ${width};
   height: 30px;
   font-size: 16px;
   border-radius: 3px;

@@ -87,7 +87,13 @@ const ConverterHex: React.FC = () => {
         <SupportingText size="13px">
           Hex #
         </SupportingText>
-        <TextInput value={hexText} onChange={onHexTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={1} />
+        <TextInput
+          value={hexText}
+          onChange={onHexTextChange}
+          onEnterKey={onChangeFocus}
+          onBlur={onChangeFocus}
+          tabIndex={1}
+        />
         <CopyButton text={hexText} />
       </div>
     </div>
@@ -95,7 +101,7 @@ const ConverterHex: React.FC = () => {
 }
 
 const containerStyle = css`
-  margin: 20px;
+  margin: 30px 25px;
 `
 const groupStyle = css`
   display: flex;

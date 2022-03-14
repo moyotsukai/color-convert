@@ -154,7 +154,7 @@ const ConverterRGBA: React.FC = () => {
 }
 
 const containerStyle = css`
-  margin: 20px;
+  margin: 30px 25px;
 `
 const groupStyle = css`
   display: flex;

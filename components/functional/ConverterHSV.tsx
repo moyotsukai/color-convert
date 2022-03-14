@@ -15,7 +15,7 @@ const ConverterHSV: React.FC = () => {
   const [hsv, setHsv] = useState<HSV>({ h: 0, s: 0, v: 0 })
   const [hsvText, setHsvText] = useState<string>("0, 0, 0")
 
-  //To hsv from sharedHsv
+  //To hsv from sharedRgba
   useEffect(() => {
     if (sharedRgba.editedFrom === "Hsv") { return }
     const newHsv = toHsvaFromRgb(sharedRgba)
@@ -39,6 +39,7 @@ const ConverterHSV: React.FC = () => {
   const setChanged = (newHsv: HSV) => {
     setHsv(newHsv)
     setHsvText(toHsvText(newHsv))
+
     const newRgba: RGBA = toRgbFromHsva({ ...newHsv, a: sharedRgba.a })
     setSharedRgba({ ...newRgba, editedFrom: "Hsv" })
   }
@@ -107,7 +108,7 @@ const ConverterHSV: React.FC = () => {
 }
 
 const containerStyle = css`
-  margin: 20px;
+  margin: 30px 25px;
 `
 const groupStyle = css`
   display: flex;

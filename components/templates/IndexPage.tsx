@@ -6,18 +6,22 @@ import ConverterRGBA from '../functional/ConverterRGBA'
 import { useRgbaContext } from '../../context/RgbaContext'
 import ConverterHSV from '../functional/ConverterHSV'
 import ConverterHex from '../functional/ConverterHex'
+import ConverterBgHex from '../functional/ConverterBgHex'
+import { useBgRgbaContext } from '../../context/BgRgbaContext'
 
 const IndexPage: React.FC = () => {
   const { sharedRgba } = useRgbaContext()
+  const { bgRgba } = useBgRgbaContext()
 
   return (
     <div css={layoutStyle}>
-      <div css={() => colorBackgroundStyle({ r: 255, g: 255, b: 255, a: 1 })} >
+      <div css={() => colorBackgroundStyle(bgRgba)} >
         <div css={() => colorObjectStyle(sharedRgba)} />
         <Spacer x={20} />
         <p css={() => colorTextStyle(sharedRgba)} >
           Color Converter
         </p>
+        <ConverterBgHex />
       </div>
 
       <div css={converterContainerStyle}>
@@ -42,12 +46,13 @@ const colorBackgroundStyle = (rgba: RGBA) => css`
   min-height: 160px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 10px 20px 40px 20px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
+  position: relative;
 
   @media(max-width: 500px) {
     flex-wrap: wrap;
@@ -75,4 +80,5 @@ const converterContainerStyle = css`
   @media(max-width: 350px) {
   }
 `
+
 export default IndexPage
