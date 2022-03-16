@@ -8,6 +8,8 @@ import ConverterHSV from '../functional/ConverterHSV'
 import ConverterHex from '../functional/ConverterHex'
 import ConverterBgHex from '../functional/ConverterBgHex'
 import { useBgRgbaContext } from '../../context/BgRgbaContext'
+import ConverterHSL from '../functional/ConverterHSL'
+import ConverterCMYK from '../functional/ConverterCMYK'
 
 const IndexPage: React.FC = () => {
   const { sharedRgba } = useRgbaContext()
@@ -28,6 +30,8 @@ const IndexPage: React.FC = () => {
         <ConverterHex />
         <ConverterRGBA />
         <ConverterHSV />
+        <ConverterHSL />
+        <ConverterCMYK />
       </div>
     </div>
   )
@@ -71,13 +75,25 @@ const colorTextStyle = (rgba: RGBA) => css`
   font-size: 28px;
 `
 const converterContainerStyle = css`
-  max-width: 1200px;
+  display: grid;
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(5, 330px);
   justify-content: center;
 
-  @media(max-width: 350px) {
+  @media(max-width: 1650px) {
+    grid-template-columns: repeat(4, 330px);
+  }
+
+  @media(max-width: 1320px) {
+    grid-template-columns: repeat(3, 330px);
+  }
+
+  @media(max-width: 990px) {
+    grid-template-columns: repeat(2, 330px);
+  }
+
+  @media(max-width: 660px) {
+    grid-template-columns: repeat(1, 330px);
   }
 `
 

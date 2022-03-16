@@ -19,7 +19,7 @@ const ConverterHSV: React.FC = () => {
   useEffect(() => {
     if (sharedRgba.editedFrom === "Hsv") { return }
     const newHsv = toHsvaFromRgb(sharedRgba)
-    setHsv({ h: newHsv.h, s: newHsv.s, v: newHsv.v, })
+    setHsv({ h: newHsv.h, s: newHsv.s, v: newHsv.v })
     setHsvText(toHsvText(newHsv))
   }, [sharedRgba])
 
