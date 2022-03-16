@@ -10,6 +10,7 @@ import ConverterBgHex from '../functional/ConverterBgHex'
 import { useBgRgbaContext } from '../../context/BgRgbaContext'
 import ConverterHSL from '../functional/ConverterHSL'
 import ConverterCMYK from '../functional/ConverterCMYK'
+import Seo from '../common/Seo'
 
 const IndexPage: React.FC = () => {
   const { sharedRgba } = useRgbaContext()
@@ -17,6 +18,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <div css={layoutStyle}>
+      <Seo />
       <div css={() => colorBackgroundStyle(bgRgba)} >
         <div css={() => colorObjectStyle(sharedRgba)} />
         <Spacer x={20} />

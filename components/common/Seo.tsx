@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 
-const Footer: React.FC = () => {
+const Seo: React.FC = () => {
   return (
     <Head>
       <title>Color Converter - Moyotsukai</title>
@@ -20,4 +20,4 @@ const Footer: React.FC = () => {
   )
 }
 
-export default Footer
+export default Seo
