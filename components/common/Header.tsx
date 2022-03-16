@@ -1,12 +1,13 @@
 import React from 'react'
 import { css } from '@emotion/react'
+import ProfileImg from '../../public/profile.jpeg'
 
 const Header: React.FC = () => {
   return (
     <header css={headerStyle}>
       <a href="https://moyotsukai.dev" css={linkStyle}>
         <div css={imageStyle}>
-          <img src="../../public/profile.jpeg" />
+          <img src={ProfileImg.src} width={36} height={36} />
         </div>
         <span css={spanStyle}>
           Moyotsukai

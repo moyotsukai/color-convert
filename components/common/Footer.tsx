@@ -7,17 +7,37 @@ const Footer: React.FC = () => {
 
   return (
     <footer css={footerStyle}>
-      &copy; {copyYear} Shintaro Aoi
+      <span css={copyStyle}>
+        &copy; {copyYear} Shintaro Aoi
+      </span>
+      <span>
+        <a href="https://twitter.com/moyotsukai" target="_blank" rel="noopener noreferrer" css={linkStyle}>
+          Twitter
+        </a>
+      </span>
     </footer>
   )
 }
 
 const footerStyle = css`
-  padding: 3px 0;
+  padding: 10px 0;
   background-color: #fff;
   text-align: center;
-  font-size: 10pt;
+`
+const copyStyle = css`
+  padding: 0 12px;
+  font-size: 14px;
   color: #999;
+`
+const linkStyle = css`
+  padding: 0 12px;
+  font-size: 14px;
+  color: #595959;
+  text-decoration: underline;
+
+  &:hover {
+    color: #3363ff;
+  }
 `
 
 export default Footer

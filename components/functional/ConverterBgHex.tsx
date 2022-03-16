@@ -71,7 +71,9 @@ const ConverterBgHex: React.FC = () => {
   return (
     <div css={groupStyle}>
       <SupportingText size="13px">
-        Background #
+        <span css={() => textStyle(bgRgba)}>
+          Background #
+        </span>
       </SupportingText>
       <TextInput
         value={bgHexText}
@@ -92,6 +94,9 @@ const groupStyle = css`
   position: absolute;
   bottom: 10px;
   right: 10px;
+`
+const textStyle = (rgba: RGBA) => css`
+  color: ${rgba.r + rgba.g + rgba.b > 384 ? "#4c4f59" : "#8d93a6"}
 `
 
 export default ConverterBgHex
