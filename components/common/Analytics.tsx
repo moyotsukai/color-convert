@@ -14,7 +14,7 @@ const Analytics: React.FC = () => {
               function gtag() {dataLayer.push(arguments);}
               gtag("js", new Date());
               gtag("config", "${GA_ID}");
-          `}
+            `}
           </Script>
         </React.Fragment>
       }
