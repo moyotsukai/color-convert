@@ -1,5 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/react'
+import Link from 'next/link'
+import OpenInNewIcon from '../icons/OpenInNewIcon'
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear()
@@ -10,11 +12,19 @@ const Footer: React.FC = () => {
       <span css={copyStyle}>
         &copy; {copyYear} Shintaro Aoi
       </span>
-      <span>
-        <a href="https://twitter.com/moyotsukai" target="_blank" rel="noopener noreferrer" css={linkStyle}>
-          Twitter
+
+      <Link href="/privacy" passHref>
+        <a css={linkStyle}>
+          Privacy
         </a>
-      </span>
+      </Link>
+
+      <a href="https://twitter.com/moyotsukai" target="_blank" rel="noopener noreferrer" css={linkStyle}>
+        <span>
+          Twitter
+        </span>
+        <OpenInNewIcon size={14} />
+      </a>
     </footer>
   )
 }
@@ -30,7 +40,7 @@ const copyStyle = css`
   color: #999;
 `
 const linkStyle = css`
-  padding: 0 12px;
+  padding: 0 8px;
   font-size: 14px;
   color: #595959;
   text-decoration: underline;

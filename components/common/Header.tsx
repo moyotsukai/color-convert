@@ -5,12 +5,12 @@ import ProfileImg from '../../public/profile.jpeg'
 const Header: React.FC = () => {
   return (
     <header css={headerStyle}>
-      <a href="https://moyotsukai.dev" css={linkStyle}>
+      <a href="https://color.moyotsukai.dev" css={linkStyle}>
         <div css={imageStyle}>
           <img src={ProfileImg.src} width={36} height={36} />
         </div>
         <span css={spanStyle}>
-          Moyotsukai
+          Color Converter - Moyotsukai
         </span>
       </a>
     </header>
