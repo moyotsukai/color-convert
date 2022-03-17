@@ -21,7 +21,8 @@
     "jsxImportSource": "@emotion/react",
     "types": [
       "@emotion/react",
-      "@emotion/react/types/css-prop"
+      "@emotion/react/types/css-prop",
+      "@types/gtag.js"
     ]
   },
   "include": [
