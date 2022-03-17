@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { useRgbaContext } from '../../context/RgbaContext'
+import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
 import { RGBA } from '../../types/Colors.type'
 import TextInput from '../ui/TextInput'
 import CopyButton from './CopyButton'
 import SupportingText from '../ui/SupportingText'
 
 const ConverterHex: React.FC = () => {
-  const { sharedRgba, setSharedRgba } = useRgbaContext()
+  const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
   const [rgba, setRgba] = useState<RGBA>({ r: 0, g: 0, b: 0, a: 1 })
   const [hexText, setHexText] = useState<string>("000000")
 
   //To hex from sharedRgba
   useEffect(() => {
     if (sharedRgba.editedFrom === "Hex") { return }
-    const newRgba = { r: sharedRgba.r, g: sharedRgba.g, b: sharedRgba.b, a: sharedRgba.a }
+    const newRgba: RGBA = { r: sharedRgba.r, g: sharedRgba.g, b: sharedRgba.b, a: sharedRgba.a }
     setRgba(newRgba)
     setHexText(toHexText(newRgba))
   }, [sharedRgba])
@@ -51,7 +51,7 @@ const ConverterHex: React.FC = () => {
       })
       const isNumber = !parsed.includes(null)
       if (isNumber) {
-        const newRgba = { r: parsed[0], g: parsed[1], b: parsed[2], a: rgba.a }
+        const newRgba: RGBA = { r: parsed[0], g: parsed[1], b: parsed[2], a: rgba.a }
         setChanged(newRgba)
       }
     }
@@ -72,7 +72,7 @@ const ConverterHex: React.FC = () => {
       })
       const isNumber = !parsed.includes(null)
       if (isNumber) {
-        const newRgba = { r: parsed[0], g: parsed[1], b: parsed[2], a: rgba.a }
+        const newRgba: RGBA = { r: parsed[0], g: parsed[1], b: parsed[2], a: rgba.a }
         setChanged(newRgba)
       }
     } else {
