@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import React from 'react'
-import Analytics from '../components/common/Analytics'
 import { GA_ID } from '../lib/gtag'
 
 class MyDocument extends Document {
@@ -10,7 +9,6 @@ class MyDocument extends Document {
         <Head>
           <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
           <meta name="theme-color" content="#fff" />
-          {/* <Analytics /> */}
           {GA_ID &&
             <React.Fragment>
               <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
@@ -24,7 +22,6 @@ class MyDocument extends Document {
               }} />
             </React.Fragment>
           }
-          <meta name="theme-color" content="#fff" />
         </Head>
         <body>
           <Main />
