@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { useRgbaContext } from '../../context/RgbaContext'
 import { CMYK, RGBA } from '../../types/Colors.type'
 import RangeInput from '../ui/RangeInput'
 import NumberInput from '../ui/NumberInput'
@@ -9,9 +8,10 @@ import TextInput from '../ui/TextInput'
 import CopyButton from './CopyButton'
 import { toRgbFromCmyka } from '../../converter/toRgbFromCmyk'
 import { toCmykFromRgb } from '../../converter/toCmykFromRgb'
+import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
 
 const ConverterCMYK: React.FC = () => {
-  const { sharedRgba, setSharedRgba } = useRgbaContext()
+  const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
   const [cmyk, setCmyk] = useState<CMYK>({ c: 0, m: 0, y: 0, k: 100 })
   const [cmykText, setCmykText] = useState<string>("0, 0, 0, 100")
 

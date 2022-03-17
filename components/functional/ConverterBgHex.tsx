@@ -3,10 +3,10 @@ import { css } from '@emotion/react'
 import { RGBA } from '../../types/Colors.type'
 import SupportingText from '../ui/SupportingText'
 import TextInput from '../ui/TextInput'
-import { useBgRgbaContext } from '../../context/BgRgbaContext'
+import { useBgRgbaValue, useSetBgRgba } from '../../context/BgRgbaContext'
 
 const ConverterBgHex: React.FC = () => {
-  const { bgRgba, setBgRgba } = useBgRgbaContext()
+  const [bgRgba, setBgRgba] = [useBgRgbaValue(), useSetBgRgba()]
   const [bgHexText, setBgHexText] = useState<string>("ffffff")
 
   const setChanged = (newRgba: RGBA) => {

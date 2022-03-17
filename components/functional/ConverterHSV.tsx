@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { useRgbaContext } from '../../context/RgbaContext'
+import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
 import { toHsvaFromRgb } from '../../converter/toHsvFromRgb'
 import { toRgbFromHsva } from '../../converter/toRgbFromHsv'
 import { HSV, RGBA } from '../../types/Colors.type'
@@ -11,7 +11,7 @@ import TextInput from '../ui/TextInput'
 import CopyButton from './CopyButton'
 
 const ConverterHSV: React.FC = () => {
-  const { sharedRgba, setSharedRgba } = useRgbaContext()
+  const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
   const [hsv, setHsv] = useState<HSV>({ h: 0, s: 0, v: 0 })
   const [hsvText, setHsvText] = useState<string>("0, 0, 0")
 

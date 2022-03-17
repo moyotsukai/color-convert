@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { useRgbaContext } from '../../context/RgbaContext'
+import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
 import { RGBA } from '../../types/Colors.type'
 import RangeInput from '../ui/RangeInput'
 import NumberInput from '../ui/NumberInput'
@@ -9,7 +9,7 @@ import CopyButton from './CopyButton'
 import SupportingText from '../ui/SupportingText'
 
 const ConverterRGBA: React.FC = () => {
-  const { sharedRgba, setSharedRgba } = useRgbaContext()
+  const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
   const [rgba, setRgba] = useState<RGBA>({ r: 0, g: 0, b: 0, a: 1 })
   const [rgbText, setRgbText] = useState<string>("0, 0, 0")
   const [rgbaText, setRgbaText] = useState<string>("0, 0, 0, 1")
@@ -17,28 +17,28 @@ const ConverterRGBA: React.FC = () => {
   //To rgba from sharedRgba
   useEffect(() => {
     if (sharedRgba.editedFrom === "Rgba") { return }
-    const newRgba = { r: sharedRgba.r, g: sharedRgba.g, b: sharedRgba.b, a: sharedRgba.a }
+    const newRgba: RGBA = { r: sharedRgba.r, g: sharedRgba.g, b: sharedRgba.b, a: sharedRgba.a }
     setRgba(newRgba)
     setRgbText(toRgbText(newRgba))
     setRgbaText(toRgbaText(newRgba))
   }, [sharedRgba])
 
   const onChangeR = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newRgba = { r: parseInt(e.target.value), g: rgba.g, b: rgba.b, a: rgba.a }
+    const newRgba: RGBA = { r: parseInt(e.target.value), g: rgba.g, b: rgba.b, a: rgba.a }
     setChanged(newRgba)
   }
   const onChangeG = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newRgba = { r: rgba.r, g: parseInt(e.target.value), b: rgba.b, a: rgba.a }
+    const newRgba: RGBA = { r: rgba.r, g: parseInt(e.target.value), b: rgba.b, a: rgba.a }
     setChanged(newRgba)
 
   }
   const onChangeB = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newRgba = { r: rgba.r, g: rgba.g, b: parseInt(e.target.value), a: rgba.a }
+    const newRgba: RGBA = { r: rgba.r, g: rgba.g, b: parseInt(e.target.value), a: rgba.a }
     setChanged(newRgba)
 
   }
   const onChangeA = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newRgba = { r: rgba.r, g: rgba.g, b: rgba.b, a: parseFloat(e.target.value) }
+    const newRgba: RGBA = { r: rgba.r, g: rgba.g, b: rgba.b, a: parseFloat(e.target.value) }
     setChanged(newRgba)
   }
 

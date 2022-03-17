@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
-import { useRgbaContext } from '../../context/RgbaContext'
 import { HSL, RGBA } from '../../types/Colors.type'
 import RangeInput from '../ui/RangeInput'
 import NumberInput from '../ui/NumberInput'
@@ -9,9 +8,10 @@ import TextInput from '../ui/TextInput'
 import CopyButton from './CopyButton'
 import { toHslaFromRgb } from '../../converter/toHslFromRgb'
 import { toRgbFromHsla } from '../../converter/toRgbFromHsl'
+import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
 
 const ConverterHSL: React.FC = () => {
-  const { sharedRgba, setSharedRgba } = useRgbaContext()
+  const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
   const [hsl, setHsl] = useState<HSL>({ h: 0, s: 0, l: 0 })
   const [hslText, setHslText] = useState<string>("0, 0, 0")
 

@@ -1,15 +1,15 @@
 import React from 'react'
-import { RgbaProvider } from '../context/RgbaContext'
 import IndexPage from '../components/templates/IndexPage'
-import { BgRgbaProvider } from '../context/BgRgbaContext'
+import { BgRgbaContextProvider } from '../context/BgRgbaContext'
+import { SharedRgbaContextProvider } from '../context/RgbaContext'
 
 const Index: React.FC = () => {
   return (
-    <RgbaProvider>
-      <BgRgbaProvider>
+    <SharedRgbaContextProvider>
+      <BgRgbaContextProvider>
         <IndexPage />
-      </BgRgbaProvider>
-    </RgbaProvider>
+      </BgRgbaContextProvider>
+    </SharedRgbaContextProvider>
   )
 }
 

@@ -3,18 +3,18 @@ import { css } from '@emotion/react'
 import { RGBA } from '../../types/Colors.type'
 import Spacer from '../ui/Spacer'
 import ConverterRGBA from '../functional/ConverterRGBA'
-import { useRgbaContext } from '../../context/RgbaContext'
 import ConverterHSV from '../functional/ConverterHSV'
 import ConverterHex from '../functional/ConverterHex'
 import ConverterBgHex from '../functional/ConverterBgHex'
-import { useBgRgbaContext } from '../../context/BgRgbaContext'
+import { useBgRgbaValue } from '../../context/BgRgbaContext'
 import ConverterHSL from '../functional/ConverterHSL'
 import ConverterCMYK from '../functional/ConverterCMYK'
 import Seo from '../common/Seo'
+import { useSharedRgbaValue } from '../../context/RgbaContext'
 
 const IndexPage: React.FC = () => {
-  const { sharedRgba } = useRgbaContext()
-  const { bgRgba } = useBgRgbaContext()
+  const sharedRgba = useSharedRgbaValue()
+  const bgRgba = useBgRgbaValue()
 
   return (
     <div css={layoutStyle}>
