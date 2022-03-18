@@ -1,4 +1,4 @@
-export type ColorTypes = "Hex" | "Rgba" | "Hsv" | "Hsl" | "Cmyk"
+export type ColorTypes = "Hex" | "Rgba" | "Hsla" | "Hsv" | "Cmyk"
 
 export type RGBA = {
   r: number,
@@ -6,6 +6,13 @@ export type RGBA = {
   b: number,
   a: number,
   editedFrom?: ColorTypes
+}
+
+export type HSLA = {
+  h: number,
+  s: number,
+  l: number,
+  a: number
 }
 
 export type HSV = {
@@ -18,19 +25,6 @@ export type HSVA = {
   h: number,
   s: number,
   v: number,
-  a: number
-}
-
-export type HSL = {
-  h: number,
-  s: number,
-  l: number
-}
-
-export type HSLA = {
-  h: number,
-  s: number,
-  l: number,
   a: number
 }
 

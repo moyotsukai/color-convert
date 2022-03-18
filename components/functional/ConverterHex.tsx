@@ -92,6 +92,7 @@ const ConverterHex: React.FC = () => {
           onChange={onHexTextChange}
           onEnterKey={onChangeFocus}
           onBlur={onChangeFocus}
+          width="160px"
           tabIndex={1}
         />
         <CopyButton text={hexText} />
