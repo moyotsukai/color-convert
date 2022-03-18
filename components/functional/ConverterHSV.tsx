@@ -80,27 +80,27 @@ const ConverterHSV: React.FC = () => {
           H
         </SupportingText>
         <RangeInput min={0} max={360} step={1} value={hsv.h} onChange={onChangeH} tabIndex={-1} />
-        <NumberInput min={0} max={360} step={1} value={hsv.h} onChange={onChangeH} tabIndex={8} />
+        <NumberInput min={0} max={360} step={1} value={hsv.h} onChange={onChangeH} tabIndex={14} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           S
         </SupportingText>
         <RangeInput min={0} max={100} step={1} value={hsv.s} onChange={onChangeS} tabIndex={-1} />
-        <NumberInput min={0} max={100} step={1} value={hsv.s} onChange={onChangeS} tabIndex={9} />
+        <NumberInput min={0} max={100} step={1} value={hsv.s} onChange={onChangeS} tabIndex={15} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           V
         </SupportingText>
         <RangeInput min={0} max={100} step={1} value={hsv.v} onChange={onChangeV} tabIndex={-1} />
-        <NumberInput min={0} max={100} step={1} value={hsv.v} onChange={onChangeV} tabIndex={10} />
+        <NumberInput min={0} max={100} step={1} value={hsv.v} onChange={onChangeV} tabIndex={16} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="13px">
           HSV
         </SupportingText>
-        <TextInput value={hsvText} onChange={onHsvTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={11} />
+        <TextInput value={hsvText} onChange={onHsvTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={17} />
         <CopyButton text={hsvText} />
       </div>
     </div>

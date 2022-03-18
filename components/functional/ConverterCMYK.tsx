@@ -82,34 +82,34 @@ const ConverterCMYK: React.FC = () => {
           C
         </SupportingText>
         <RangeInput min={0} max={100} step={1} value={cmyk.c} onChange={onChangeC} tabIndex={-1} />
-        <NumberInput min={0} max={100} step={1} value={cmyk.c} onChange={onChangeC} tabIndex={16} />
+        <NumberInput min={0} max={100} step={1} value={cmyk.c} onChange={onChangeC} tabIndex={18} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           M
         </SupportingText>
         <RangeInput min={0} max={100} step={1} value={cmyk.m} onChange={onChangeM} tabIndex={-1} />
-        <NumberInput min={0} max={100} step={1} value={cmyk.m} onChange={onChangeM} tabIndex={17} />
+        <NumberInput min={0} max={100} step={1} value={cmyk.m} onChange={onChangeM} tabIndex={19} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           Y
         </SupportingText>
         <RangeInput min={0} max={100} step={1} value={cmyk.y} onChange={onChangeY} tabIndex={-1} />
-        <NumberInput min={0} max={100} step={1} value={cmyk.y} onChange={onChangeY} tabIndex={18} />
+        <NumberInput min={0} max={100} step={1} value={cmyk.y} onChange={onChangeY} tabIndex={20} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           K
         </SupportingText>
         <RangeInput min={0} max={100} step={1} value={cmyk.k} onChange={onChangeK} tabIndex={-1} />
-        <NumberInput min={0} max={100} step={1} value={cmyk.k} onChange={onChangeK} tabIndex={19} />
+        <NumberInput min={0} max={100} step={1} value={cmyk.k} onChange={onChangeK} tabIndex={21} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="13px">
           CMYK
         </SupportingText>
-        <TextInput value={cmykText} onChange={onCmykTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={20} />
+        <TextInput value={cmykText} onChange={onCmykTextChange} onEnterKey={onChangeFocus} onBlur={onChangeFocus} tabIndex={22} />
         <CopyButton text={cmykText} />
       </div>
     </div>

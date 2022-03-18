@@ -35,7 +35,7 @@ const TextInput: React.FC<Props> = (props) => {
   )
 }
 
-const inputStyle = (width: string = "170px") => css`
+const inputStyle = (width: string = "180px") => css`
   outline: none;
   border: solid 2px #e6ebff;
   width: ${width};
