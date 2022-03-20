@@ -9,7 +9,6 @@ import CopyButton from './CopyButton'
 import { toHslaFromRgb } from '../../converter/toHslFromRgb'
 import { toRgbFromHsla } from '../../converter/toRgbFromHsl'
 import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
-import { log } from '../../utils/log'
 
 const ConverterHSLA: React.FC = () => {
   const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
@@ -74,6 +73,7 @@ const ConverterHSLA: React.FC = () => {
       if (isNaN(num)) { return null }
       if (index === 0 && num > 360) { return 360 }
       if (index === 0 && num < 0) { return 0 }
+      if (index === 0) { return num }
       if (num > 100) { return 100 }
       if (num < 0) { return 0 }
       return num
@@ -99,8 +99,10 @@ const ConverterHSLA: React.FC = () => {
       if (isNaN(num)) { return null }
       if (index === 0 && num > 360) { return 360 }
       if (index === 0 && num < 0) { return 0 }
+      if (index === 0) { return num }
       if (index === 3 && num > 1) { return 1 }
       if (index === 3 && num < 0) { return 0 }
+      if (index === 3) { return num }
       if (num > 100) { return 100 }
       if (num < 0) { return 0 }
       return num
@@ -122,8 +124,10 @@ const ConverterHSLA: React.FC = () => {
       if (isNaN(num)) { return null }
       if (index === 0 && num > 360) { return 360 }
       if (index === 0 && num < 0) { return 0 }
+      if (index === 0) { return num }
       if (index === 3 && num > 1) { return 1 }
       if (index === 3 && num < 0) { return 0 }
+      if (index === 3) { return num }
       if (num > 100) { return 100 }
       if (num < 0) { return 0 }
       return num
@@ -133,20 +137,16 @@ const ConverterHSLA: React.FC = () => {
       if (isNumber && parsed.length === 3) {
         const newHsla = { h: parsed[0], s: parsed[1], l: parsed[2], a: hsla.a }
         setChanged(newHsla)
-        log("1")
       } else {
         setHslText(toHslText(hsla))
-        log("2")
       }
     }
     if (colorMode === "Hsla") {
       if (isNumber && parsed.length === 4) {
         const newHsla = { h: parsed[0], s: parsed[1], l: parsed[2], a: parsed[3] }
         setChanged(newHsla)
-        log("3")
       } else {
         setHslaText(toHslaText(hsla))
-        log("4")
       }
     }
   }

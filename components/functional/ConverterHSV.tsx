@@ -58,8 +58,9 @@ const ConverterHSV: React.FC = () => {
       if (isNaN(num)) { return null }
       if (index === 0 && num > 360) { return 360 }
       if (index === 0 && num < 0) { return 0 }
-      if (index !== 0 && num > 100) { return 100 }
-      if (index !== 0 && num < 0) { return 0 }
+      if (index === 0) { return num }
+      if (num > 100) { return 100 }
+      if (num < 0) { return 0 }
       return num
     })
     const isNumber = !parsed.includes(null)
