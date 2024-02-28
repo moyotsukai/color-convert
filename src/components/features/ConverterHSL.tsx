@@ -16,30 +16,30 @@ const ConverterHSLA: React.FC = () => {
   const [hslText, setHslText] = useState<string>("0, 0%, 0%")
   const [hslaText, setHslaText] = useState<string>("0, 0%, 0%, 1")
 
-  //To hsl from sharedRgba
+  //To hsla from sharedRgba
   useEffect(() => {
     if (sharedRgba.editedFrom === "Hsla") { return }
     const newHsla = toHslaFromRgb(sharedRgba)
-    setHsla({ h: newHsla.h, s: newHsla.s, l: newHsla.l, a: newHsla.a })
+    setHsla(newHsla)
     setHslText(toHslText(newHsla))
     setHslaText(toHslaText(newHsla))
   }, [sharedRgba])
 
   const onChangeH = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newHsla = { h: parseInt(e.target.value), s: hsla.s, l: hsla.l, a: hsla.a }
+    const newHsla: HSLA = { h: parseInt(e.target.value), s: hsla.s, l: hsla.l, a: hsla.a }
     setChanged(newHsla)
   }
   const onChangeS = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newHsla = { h: hsla.h, s: parseInt(e.target.value), l: hsla.l, a: hsla.a }
+    const newHsla: HSLA = { h: hsla.h, s: parseInt(e.target.value), l: hsla.l, a: hsla.a }
     setChanged(newHsla)
   }
   const onChangeL = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newHsla = { h: hsla.h, s: hsla.s, l: parseInt(e.target.value), a: hsla.a }
+    const newHsla: HSLA = { h: hsla.h, s: hsla.s, l: parseInt(e.target.value), a: hsla.a }
     setChanged(newHsla)
   }
 
   const onChangeA = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newHsla = { h: hsla.h, s: hsla.s, l: hsla.l, a: parseFloat(e.target.value) }
+    const newHsla: HSLA = { h: hsla.h, s: hsla.s, l: hsla.l, a: parseFloat(e.target.value) }
     setChanged(newHsla)
   }
 

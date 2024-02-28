@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from '@emotion/react'
-import ProfileImg from '../../public/profile.jpeg'
+import ProfileImg from '../../../public/profile.jpeg'
 
 const Header: React.FC = () => {
   return (

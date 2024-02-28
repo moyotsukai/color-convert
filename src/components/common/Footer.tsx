@@ -4,24 +4,19 @@ import Link from 'next/link'
 import OpenInNewIcon from '../icons/OpenInNewIcon'
 
 const Footer: React.FC = () => {
-  const year = new Date().getFullYear()
-  const copyYear = year === 2022 ? "2022" : "2022-" + year
-
   return (
     <footer css={footerStyle}>
       <span css={copyStyle}>
-        &copy; {copyYear} Shintaro Aoi
+        &copy; 2022 Shintaro Aoi
       </span>
 
-      <Link href="/privacy" passHref>
-        <a css={linkStyle}>
-          Privacy
-        </a>
+      <Link href="/privacy" css={linkStyle}>
+        Privacy
       </Link>
 
-      <a href="https://twitter.com/moyotsukai" target="_blank" rel="noopener noreferrer" css={linkStyle}>
+      <a href="https://www.moyotsukai.dev/" target="_blank" rel="noopener noreferrer" css={linkStyle}>
         <span>
-          Twitter
+          Portfolio
         </span>
         <OpenInNewIcon size={14} />
       </a>

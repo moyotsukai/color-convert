@@ -1,9 +1,9 @@
 import React, { createContext, Dispatch, SetStateAction, useContext, useState } from 'react'
 import { RGBA } from '../types/Colors.type'
 
-const defaultSharedRgbaState: RGBA = { r: 0, g: 0, b: 0, a: 1 }
+const defaultSharedRgbaValue: RGBA = { r: 0, g: 0, b: 0, a: 1 }
 
-const SharedRgbaValueContext = createContext<RGBA>(defaultSharedRgbaState)
+const SharedRgbaValueContext = createContext<RGBA>(defaultSharedRgbaValue)
 
 const SharedRgbaDispatchContext = createContext<Dispatch<SetStateAction<RGBA>>>(() => undefined)
 
@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const SharedRgbaContextProvider: React.FC<Props> = (props) => {
-  const [sharedRgb, setSharedRgb] = useState<RGBA>(defaultSharedRgbaState)
+  const [sharedRgb, setSharedRgb] = useState<RGBA>(defaultSharedRgbaValue)
 
   return (
     <SharedRgbaValueContext.Provider value={sharedRgb}>
