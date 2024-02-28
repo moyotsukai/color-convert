@@ -1,6 +1,5 @@
 import React from 'react'
 import { css } from '@emotion/react'
-import { RGBA } from '../../types/Colors.type'
 import Spacer from '../ui/Spacer'
 import ConverterRGBA from '../features/ConverterRGBA'
 import ConverterHSV from '../features/ConverterHSV'
@@ -11,6 +10,7 @@ import ConverterHSL from '../features/ConverterHSL'
 import ConverterCMYK from '../features/ConverterCMYK'
 import Seo from '../common/Seo'
 import { useSharedRgbaValue } from '../../context/RgbaContext'
+import Palette from '../features/Palette'
 
 const IndexPage: React.FC = () => {
   const sharedRgba = useSharedRgbaValue()
@@ -19,10 +19,19 @@ const IndexPage: React.FC = () => {
   return (
     <div css={layoutStyle}>
       <Seo />
-      <div css={() => colorBackgroundStyle(bgRgba)} >
-        <div css={() => colorBlockStyle(sharedRgba)} />
+      <div
+        style={{ backgroundColor: `rgba(${bgRgba.r}, ${bgRgba.g}, ${bgRgba.b}, ${bgRgba.a}` }}
+        css={colorBackgroundStyle}
+      >
+        <div
+          style={{ backgroundColor: `rgba(${sharedRgba.r}, ${sharedRgba.g}, ${sharedRgba.b}, ${sharedRgba.a})` }}
+          css={colorBlockStyle}
+        />
         <Spacer x={20} />
-        <p css={() => colorTextStyle(sharedRgba)} >
+        <p
+          style={{ color: `rgba(${sharedRgba.r}, ${sharedRgba.g}, ${sharedRgba.b}, ${sharedRgba.a})` }}
+          css={colorTextStyle}
+        >
           Color Converter
         </p>
         <ConverterBgHex />
@@ -34,6 +43,7 @@ const IndexPage: React.FC = () => {
         <ConverterHSL />
         <ConverterHSV />
         <ConverterCMYK />
+        <Palette />
       </div>
     </div>
   )
@@ -44,8 +54,7 @@ const layoutStyle = css`
   background-color: #f2f5ff;
   padding: 15px;
 `
-const colorBackgroundStyle = (rgba: RGBA) => css`
-  background-color: rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a});
+const colorBackgroundStyle = css`
   display: block;
   height: 30vh;
   min-width: 160px;
@@ -64,16 +73,14 @@ const colorBackgroundStyle = (rgba: RGBA) => css`
     flex-wrap: wrap;
   }
 `
-const colorBlockStyle = (rgba: RGBA) => css`
-  background-color: rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a});
+const colorBlockStyle = css`
   width: 15vh;
   height: 15vh;
   min-width: 120px;
   min-height: 120px;
   border-radius: 6px;
 `
-const colorTextStyle = (rgba: RGBA) => css`
-  color: rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a});
+const colorTextStyle = css`
   font-size: 28px;
 `
 const converterContainerStyle = css`

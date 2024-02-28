@@ -5,6 +5,7 @@ import { RGBA } from '../../types/Colors.type'
 import TextInput from '../ui/TextInput'
 import CopyButton from './CopyButton'
 import SupportingText from '../ui/SupportingText'
+import { toHexText } from '../../converter/toHexFromRgb'
 
 const ConverterHex: React.FC = () => {
   const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
@@ -25,16 +26,6 @@ const ConverterHex: React.FC = () => {
 
     const newSharedRgba: RGBA = { ...newRgba, editedFrom: "Hex" }
     setSharedRgba(newSharedRgba)
-  }
-
-  const toHexText = (rgba: RGBA): string => {
-    const rgbArray = [rgba.r, rgba.g, rgba.b]
-    const converted = rgbArray.map((item) => {
-      const stringified = item.toString(16)
-      return stringified.length === 1 ? "0" + stringified : stringified
-    })
-
-    return converted.join("")
   }
 
   const onHexTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
