@@ -1,5 +1,5 @@
 import React from 'react'
-import IndexPage from '../components/templates/IndexPage'
+import IndexPage from '../components/pages/IndexPage'
 import { BgRgbaContextProvider } from '../context/BgRgbaContext'
 import { SharedRgbaContextProvider } from '../context/RgbaContext'
 

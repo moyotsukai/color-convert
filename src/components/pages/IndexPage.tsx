@@ -2,13 +2,13 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { RGBA } from '../../types/Colors.type'
 import Spacer from '../ui/Spacer'
-import ConverterRGBA from '../functional/ConverterRGBA'
-import ConverterHSV from '../functional/ConverterHSV'
-import ConverterHex from '../functional/ConverterHex'
-import ConverterBgHex from '../functional/ConverterBgHex'
+import ConverterRGBA from '../features/ConverterRGBA'
+import ConverterHSV from '../features/ConverterHSV'
+import ConverterHex from '../features/ConverterHex'
+import ConverterBgHex from '../features/ConverterBgHex'
 import { useBgRgbaValue } from '../../context/BgRgbaContext'
-import ConverterHSL from '../functional/ConverterHSL'
-import ConverterCMYK from '../functional/ConverterCMYK'
+import ConverterHSL from '../features/ConverterHSL'
+import ConverterCMYK from '../features/ConverterCMYK'
 import Seo from '../common/Seo'
 import { useSharedRgbaValue } from '../../context/RgbaContext'
 
@@ -20,7 +20,7 @@ const IndexPage: React.FC = () => {
     <div css={layoutStyle}>
       <Seo />
       <div css={() => colorBackgroundStyle(bgRgba)} >
-        <div css={() => colorObjectStyle(sharedRgba)} />
+        <div css={() => colorBlockStyle(sharedRgba)} />
         <Spacer x={20} />
         <p css={() => colorTextStyle(sharedRgba)} >
           Color Converter
@@ -64,7 +64,7 @@ const colorBackgroundStyle = (rgba: RGBA) => css`
     flex-wrap: wrap;
   }
 `
-const colorObjectStyle = (rgba: RGBA) => css`
+const colorBlockStyle = (rgba: RGBA) => css`
   background-color: rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a});
   width: 15vh;
   height: 15vh;
