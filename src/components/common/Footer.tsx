@@ -39,10 +39,10 @@ const linkStyle = css`
   font-size: 14px;
   color: #595959;
   text-decoration: underline;
-
   &:hover {
     color: #3363ff;
   }
+  transition: all 0.2s ease-out;
 `
 
 export default Footer

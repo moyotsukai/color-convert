@@ -36,8 +36,12 @@ const buttonStyle = css`
   border: none;
   border-radius: 3px;
   font-size: 14px;
-  color: #666;
-  background-color: #e6ebff;
+  color: #5c658a;
+  background-color: #dee4ff;
+  &:hover {
+    background-color: #e6ebff;
+  }
+  transition: 0.2s ease-in-out;
 `
 
 export default CopyButton

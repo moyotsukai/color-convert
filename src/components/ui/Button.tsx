@@ -25,8 +25,12 @@ const buttonStyle = (style: "primary" | "secondary") => css`
   border: none;
   border-radius: 3px;
   font-size: 14px;
-  color: ${style === "primary" ? "#fff" : "#666"};
-  background-color: ${style === "primary" ? "#335cff" : "#e6ebff"};
+  color: ${style === "primary" ? "#fff" : "#5c658a"};
+  background-color: ${style === "primary" ? "#335cff" : "#dee4ff"};
+  &:hover {
+    background-color: ${style === "primary" ? "#5274ff" : "#e6ebff"};
+  }
+  transition: 0.2s ease-in-out;
 `
 
 export default Button

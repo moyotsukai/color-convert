@@ -1,7 +1,7 @@
 import React, { createContext, Dispatch, SetStateAction, useContext, useState } from 'react'
 import { RGBA } from '../types/Colors.type'
 
-const defaultSharedRgbaValue: RGBA = { r: 0, g: 0, b: 0, a: 1 }
+const defaultSharedRgbaValue: RGBA = { r: 255, g: 128, b: 149, a: 1 }
 
 const SharedRgbaValueContext = createContext<RGBA>(defaultSharedRgbaValue)
 

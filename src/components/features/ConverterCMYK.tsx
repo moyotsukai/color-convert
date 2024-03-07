@@ -9,6 +9,7 @@ import CopyButton from './CopyButton'
 import { toRgbFromCmyka } from '../../converter/toRgbFromCmyk'
 import { toCmykFromRgb } from '../../converter/toCmykFromRgb'
 import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
+import { toRgbaText } from '../../converter/toRgbaTextFromRgba'
 
 const ConverterCMYK: React.FC = () => {
   const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
@@ -81,28 +82,51 @@ const ConverterCMYK: React.FC = () => {
         <SupportingText size="16px">
           C
         </SupportingText>
-        <RangeInput min={0} max={100} step={1} value={cmyk.c} onChange={onChangeC} tabIndex={-1} />
+        <RangeInput min={0} max={100} step={1} value={cmyk.c} onChange={onChangeC} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromCmyka({ c: 0, m: toCmykFromRgb(sharedRgba).m, y: toCmykFromRgb(sharedRgba).y, k: toCmykFromRgb(sharedRgba).k, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromCmyka({ c: 100, m: toCmykFromRgb(sharedRgba).m, y: toCmykFromRgb(sharedRgba).y, k: toCmykFromRgb(sharedRgba).k, a: 1 }))})
+          `}
+        />
         <NumberInput min={0} max={100} step={1} value={cmyk.c} onChange={onChangeC} tabIndex={18} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           M
         </SupportingText>
-        <RangeInput min={0} max={100} step={1} value={cmyk.m} onChange={onChangeM} tabIndex={-1} />
+        <RangeInput min={0} max={100} step={1} value={cmyk.m} onChange={onChangeM} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromCmyka({ c: toCmykFromRgb(sharedRgba).c, m: 0, y: toCmykFromRgb(sharedRgba).y, k: toCmykFromRgb(sharedRgba).k, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromCmyka({ c: toCmykFromRgb(sharedRgba).c, m: 100, y: toCmykFromRgb(sharedRgba).y, k: toCmykFromRgb(sharedRgba).k, a: 1 }))})
+          `}
+
+        />
         <NumberInput min={0} max={100} step={1} value={cmyk.m} onChange={onChangeM} tabIndex={19} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           Y
         </SupportingText>
-        <RangeInput min={0} max={100} step={1} value={cmyk.y} onChange={onChangeY} tabIndex={-1} />
+        <RangeInput min={0} max={100} step={1} value={cmyk.y} onChange={onChangeY} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromCmyka({ c: toCmykFromRgb(sharedRgba).c, m: toCmykFromRgb(sharedRgba).m, y: 0, k: toCmykFromRgb(sharedRgba).k, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromCmyka({ c: toCmykFromRgb(sharedRgba).c, m: toCmykFromRgb(sharedRgba).m, y: 100, k: toCmykFromRgb(sharedRgba).k, a: 1 }))})
+          `}
+
+        />
         <NumberInput min={0} max={100} step={1} value={cmyk.y} onChange={onChangeY} tabIndex={20} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           K
         </SupportingText>
-        <RangeInput min={0} max={100} step={1} value={cmyk.k} onChange={onChangeK} tabIndex={-1} />
+        <RangeInput min={0} max={100} step={1} value={cmyk.k} onChange={onChangeK} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromCmyka({ c: toCmykFromRgb(sharedRgba).c, m: toCmykFromRgb(sharedRgba).m, y: toCmykFromRgb(sharedRgba).y, k: 0, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromCmyka({ c: toCmykFromRgb(sharedRgba).c, m: toCmykFromRgb(sharedRgba).m, y: toCmykFromRgb(sharedRgba).y, k: 100, a: 1 }))})
+          `}
+
+        />
         <NumberInput min={0} max={100} step={1} value={cmyk.k} onChange={onChangeK} tabIndex={21} />
       </div>
       <div css={groupStyle}>

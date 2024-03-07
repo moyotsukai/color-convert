@@ -81,7 +81,8 @@ const ConverterBgHex: React.FC = () => {
         onEnterKey={onChangeFocus}
         onBlur={onChangeFocus}
         width="90px"
-        tabIndex={100} />
+        tabIndex={100}
+      />
     </div>
   )
 }

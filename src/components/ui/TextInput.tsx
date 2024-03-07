@@ -30,6 +30,7 @@ const TextInput: React.FC<Props> = (props) => {
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       onBlur={props.onBlur}
+      spellCheck={false}
       css={() => inputStyle(props.width)}
     />
   )
@@ -43,10 +44,10 @@ const inputStyle = (width: string = "180px") => css`
   font-size: 16px;
   border-radius: 3px;
   margin: 2px 3px;
-
   &:focus {
     border: solid 2px #3363ff;
   }
+  transition: 0.2s ease-in-out;
 `
 
 export default TextInput

@@ -25,7 +25,8 @@ const NumberInput: React.FC<Props> = (props) => {
       onChange={props.onChange}
       tabIndex={props.tabIndex}
       onFocus={onFocus}
-      css={inputStyle} />
+      css={inputStyle}
+    />
   )
 }
 
@@ -37,10 +38,10 @@ const inputStyle = css`
   font-size: 16px;
   border-radius: 3px;
   margin: 0 3px;
-
   &:focus {
     border: solid 2px #3363ff;
   }
+  transition: 0.2s ease-in-out;
 `
 
 export default NumberInput

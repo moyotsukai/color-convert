@@ -7,6 +7,7 @@ import NumberInput from '../ui/NumberInput'
 import TextInput from '../ui/TextInput'
 import CopyButton from './CopyButton'
 import SupportingText from '../ui/SupportingText'
+import { toRgbText, toRgbaText } from '../../converter/toRgbaTextFromRgba'
 
 const ConverterRGBA: React.FC = () => {
   const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
@@ -49,14 +50,6 @@ const ConverterRGBA: React.FC = () => {
 
     const newSharedRgba: RGBA = { ...newRgba, editedFrom: "Rgba" }
     setSharedRgba(newSharedRgba)
-  }
-
-  const toRgbText = (rgba: RGBA): string => {
-    return `${rgba.r}, ${rgba.g}, ${rgba.b}`
-  }
-
-  const toRgbaText = (rgba: RGBA): string => {
-    return `${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a}`
   }
 
   const onRgbTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,28 +104,48 @@ const ConverterRGBA: React.FC = () => {
         <SupportingText size="16px">
           R
         </SupportingText>
-        <RangeInput min={0} max={255} step={1} value={rgba.r} onChange={onChangeR} tabIndex={-1} />
+        <RangeInput min={0} max={255} step={1} value={rgba.r} onChange={onChangeR} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText({ r: 0, g: sharedRgba.g, b: sharedRgba.b, a: 1 })}),
+          rgba(${toRgbaText({ r: 255, g: sharedRgba.g, b: sharedRgba.b, a: 1 })})
+          `}
+        />
         <NumberInput min={0} max={255} step={1} value={rgba.r} onChange={onChangeR} tabIndex={2} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           G
         </SupportingText>
-        <RangeInput min={0} max={255} step={1} value={rgba.g} onChange={onChangeG} tabIndex={-1} />
+        <RangeInput min={0} max={255} step={1} value={rgba.g} onChange={onChangeG} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText({ r: sharedRgba.r, g: 0, b: sharedRgba.b, a: 1 })}),
+          rgba(${toRgbaText({ r: sharedRgba.r, g: 255, b: sharedRgba.b, a: 1 })})
+          `}
+        />
         <NumberInput min={0} max={255} step={1} value={rgba.g} onChange={onChangeG} tabIndex={3} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           B
         </SupportingText>
-        <RangeInput min={0} max={255} step={1} value={rgba.b} onChange={onChangeB} tabIndex={-1} />
+        <RangeInput min={0} max={255} step={1} value={rgba.b} onChange={onChangeB} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText({ r: sharedRgba.r, g: sharedRgba.g, b: 0, a: 1 })}),
+          rgba(${toRgbaText({ r: sharedRgba.r, g: sharedRgba.g, b: 255, a: 1 })})
+          `}
+        />
         <NumberInput min={0} max={255} step={1} value={rgba.b} onChange={onChangeB} tabIndex={4} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           A
         </SupportingText>
-        <RangeInput min={0} max={1} step={0.01} value={rgba.a} onChange={onChangeA} tabIndex={-1} />
+        <RangeInput min={0} max={1} step={0.01} value={rgba.a} onChange={onChangeA} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText({ r: sharedRgba.r, g: sharedRgba.g, b: sharedRgba.b, a: 0 })}),
+          rgba(${toRgbaText({ r: sharedRgba.r, g: sharedRgba.g, b: sharedRgba.b, a: 1 })})
+          `}
+        />
         <NumberInput min={0} max={1} step={0.01} value={rgba.a} onChange={onChangeA} tabIndex={5} />
       </div>
       <div css={groupStyle}>

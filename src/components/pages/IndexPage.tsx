@@ -51,7 +51,7 @@ const IndexPage: React.FC = () => {
 
 const layoutStyle = css`
   min-height: 100vh;
-  background-color: #f2f5ff;
+  background-color: #f5f7ff;
   padding: 15px;
 `
 const colorBackgroundStyle = css`
@@ -68,7 +68,7 @@ const colorBackgroundStyle = css`
   justify-content: center;
   border-radius: 12px;
   position: relative;
-
+  transition: 0.2s ease-in-out;
   @media(max-width: 500px) {
     flex-wrap: wrap;
   }
@@ -79,9 +79,11 @@ const colorBlockStyle = css`
   min-width: 120px;
   min-height: 120px;
   border-radius: 6px;
+  transition: 0.2s ease-in-out;
 `
 const colorTextStyle = css`
   font-size: 28px;
+  transition: 0.2s ease-in-out;
 `
 const converterContainerStyle = css`
   display: grid;
