@@ -7,37 +7,43 @@ type Props = {
   step: number,
   value: number,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  tabIndex?: number
+  tabIndex?: number,
+  colors?: string
 }
 
-const RangeInput: React.FC<Props> = (props) => {
+const RangeInput: React.FC<Props> = ({ min, max, step, value, onChange, tabIndex, colors }) => {
   return (
     <input
       type="range"
-      min={props.min}
-      max={props.max}
-      step={props.step}
-      value={props.value}
-      onChange={props.onChange}
-      tabIndex={props.tabIndex}
-      css={inputStyle} />
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={onChange}
+      tabIndex={tabIndex}
+      css={() => inputStyle(colors)}
+    />
   )
 }
 
-const inputStyle = css`
+const inputStyle = (colors: string) => css`
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
   outline: none;
-  background-color: #aabbf2;
   width: 160px;
-  height: 6px;
-  border-radius: 3px;
-  margin: 14px 10px;
+  height: 18px;
+  border-radius: 9px;
+  margin: 12px 10px;
+  transition: 0.2s ease-in-out;
+  background: -moz-linear-gradient(0deg, ${colors});
+  background: -webkit-linear-gradient(0deg, ${colors});
+  background: linear-gradient(90deg, ${colors});
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background-color: #3363ff;
+    outline: 2px solid #3363ff;
+    background-color: #fff;
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -46,7 +52,8 @@ const inputStyle = css`
   }
 
   &::-moz-range-thumb {
-    background-color: #3363ff;
+    outline: 2px solid #3363ff;
+    background-color: #fff;
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -59,8 +66,10 @@ const inputStyle = css`
   }
 
   &:active::-webkit-slider-thumb {
-    background-color: #4d76ff;
+    outline: 2px solid #3363ff;
+    background-color: #fff;
     box-shadow: 0px 4.5px 9px -2px rgba(0, 60, 255, 0.15);
+    transform: scale(0.9);
   }
 `
 

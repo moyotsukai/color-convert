@@ -9,6 +9,7 @@ import CopyButton from './CopyButton'
 import { toHslaFromRgb } from '../../converter/toHslFromRgb'
 import { toRgbFromHsla } from '../../converter/toRgbFromHsl'
 import { useSetSharedRgba, useSharedRgbaValue } from '../../context/RgbaContext'
+import { toRgbaText } from '../../converter/toRgbaTextFromRgba'
 
 const ConverterHSLA: React.FC = () => {
   const [sharedRgba, setSharedRgba] = [useSharedRgbaValue(), useSetSharedRgba()]
@@ -157,28 +158,55 @@ const ConverterHSLA: React.FC = () => {
         <SupportingText size="16px">
           H
         </SupportingText>
-        <RangeInput min={0} max={360} step={1} value={hsla.h} onChange={onChangeH} tabIndex={-1} />
+        <RangeInput min={0} max={360} step={1} value={hsla.h} onChange={onChangeH} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromHsla({ h: 0, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 45, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 90, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 135, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 180, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 225, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 270, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 315, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: 360, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))})
+          `}
+        />
         <NumberInput min={0} max={360} step={1} value={hsla.h} onChange={onChangeH} tabIndex={8} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           S
         </SupportingText>
-        <RangeInput min={0} max={100} step={1} value={hsla.s} onChange={onChangeS} tabIndex={-1} />
+        <RangeInput min={0} max={100} step={1} value={hsla.s} onChange={onChangeS} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromHsla({ h: toHslaFromRgb(sharedRgba).h, s: 0, l: toHslaFromRgb(sharedRgba).l, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: toHslaFromRgb(sharedRgba).h, s: 100, l: toHslaFromRgb(sharedRgba).l, a: 1 }))})
+          `}
+        />
         <NumberInput min={0} max={100} step={1} value={hsla.s} onChange={onChangeS} tabIndex={9} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           L
         </SupportingText>
-        <RangeInput min={0} max={100} step={1} value={hsla.l} onChange={onChangeL} tabIndex={-1} />
+        <RangeInput min={0} max={100} step={1} value={hsla.l} onChange={onChangeL} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromHsla({ h: toHslaFromRgb(sharedRgba).h, s: toHslaFromRgb(sharedRgba).s, l: 0, a: 1 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: toHslaFromRgb(sharedRgba).h, s: toHslaFromRgb(sharedRgba).s, l: 100, a: 1 }))})
+          `}
+        />
         <NumberInput min={0} max={100} step={1} value={hsla.l} onChange={onChangeL} tabIndex={10} />
       </div>
       <div css={groupStyle}>
         <SupportingText size="16px">
           A
         </SupportingText>
-        <RangeInput min={0} max={1} step={0.01} value={hsla.a} onChange={onChangeA} tabIndex={-1} />
+        <RangeInput min={0} max={1} step={0.01} value={hsla.a} onChange={onChangeA} tabIndex={-1}
+          colors={`
+          rgba(${toRgbaText(toRgbFromHsla({ h: toHslaFromRgb(sharedRgba).h, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 0 }))}),
+          rgba(${toRgbaText(toRgbFromHsla({ h: toHslaFromRgb(sharedRgba).h, s: toHslaFromRgb(sharedRgba).s, l: toHslaFromRgb(sharedRgba).l, a: 1 }))})
+          `}
+        />
         <NumberInput min={0} max={1} step={0.01} value={hsla.a} onChange={onChangeA} tabIndex={11} />
       </div>
       <div css={groupStyle}>

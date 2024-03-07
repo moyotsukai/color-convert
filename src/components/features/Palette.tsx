@@ -25,6 +25,7 @@ const Palette: React.FC = () => {
   }
 
   const onClickColor = (color: RGBA) => {
+    color.editedFrom = null
     setSharedRgba(color)
   }
 
@@ -55,7 +56,7 @@ const Palette: React.FC = () => {
                       <button
                         onClick={() => onClickColor(color)}
                         style={{ backgroundColor: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})` }}
-                        css={colorButtonStyle}
+                        css={() => colorButtonStyle(color === sharedRgba)}
                       />
                     </td>
                   ))}
@@ -98,13 +99,19 @@ const cellStyle = css`
   margin: 0;
   padding: 0;
 `
-const colorButtonStyle = css`
+const colorButtonStyle = (isSelected: boolean) => css`
   cursor: pointer;
   width: 35px;
   height: 35px;
   border: none;
   margin: 0;
   padding: 0;
+  border-radius: ${isSelected ? "17.5px" : "0"};
+  &:hover {
+    transform: scale(1.1);
+    z-index: 999;
+  }
+  transition: 0.2s ease-in-out;
 `
 const noColorTextStyle = css`
   text-align: center;
