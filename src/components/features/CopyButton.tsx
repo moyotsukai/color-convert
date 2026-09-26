@@ -1,30 +1,28 @@
-import React, { useState } from 'react'
-import { css } from '@emotion/react'
-import SupportingText from '../ui/SupportingText'
+import React, { useState } from "react";
+import { css } from "@emotion/react";
+import SupportingText from "../ui/SupportingText";
 
 type Props = {
-  text: string
-}
+  text: string;
+};
 
 const CopyButton: React.FC<Props> = (props) => {
-  const [title, setTitle] = useState<"Copy" | "Copied">("Copy")
+  const [title, setTitle] = useState<"Copy" | "Copied">("Copy");
 
   const onClick = () => {
-    navigator.clipboard?.writeText(props.text)
-    setTitle("Copied")
+    navigator.clipboard?.writeText(props.text);
+    setTitle("Copied");
     setTimeout(() => {
-      setTitle("Copy")
-    }, 1000)
-  }
+      setTitle("Copy");
+    }, 1000);
+  };
 
   return (
     <button onClick={onClick} tabIndex={-1} css={buttonStyle}>
-      <SupportingText size="13px">
-        {title}
-      </SupportingText>
+      <SupportingText size="13px">{title}</SupportingText>
     </button>
-  )
-}
+  );
+};
 
 const buttonStyle = css`
   width: 50px;
@@ -36,12 +34,12 @@ const buttonStyle = css`
   border: none;
   border-radius: 3px;
   font-size: 14px;
-  color: #5c658a;
-  background-color: #dee4ff;
+  color: #252526;
+  background-color: #deeaff;
   &:hover {
-    background-color: #e6ebff;
+    background-color: #e6efff;
   }
   transition: 0.2s ease-in-out;
-`
+`;
 
-export default CopyButton
+export default CopyButton;

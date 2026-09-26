@@ -16,7 +16,7 @@ const SupportingText: React.FC<Props> = (props) => {
 
 const textStyle = (size: string) => css`
   font-size: ${size};
-  color: #4c4f59;
+  color: #252526;
 `
 
 export default SupportingText

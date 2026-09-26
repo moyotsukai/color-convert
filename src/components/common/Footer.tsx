@@ -1,39 +1,24 @@
-import React from 'react'
-import { css } from '@emotion/react'
-import Link from 'next/link'
-import OpenInNewIcon from '../icons/OpenInNewIcon'
+import React from "react";
+import { css } from "@emotion/react";
 
 const Footer: React.FC = () => {
   return (
     <footer css={footerStyle}>
-      <span css={copyStyle}>
-        &copy; 2022 Shintaro Aoi
-      </span>
-
-      <Link href="/privacy" css={linkStyle}>
-        Privacy
-      </Link>
-
-      <a href="https://www.moyotsukai.dev/" target="_blank" rel="noopener noreferrer" css={linkStyle}>
-        <span>
-          Portfolio
-        </span>
-        <OpenInNewIcon size={14} />
-      </a>
+      <span css={copyStyle}>&copy; 2022 Shintaro Aoi</span>
     </footer>
-  )
-}
+  );
+};
 
 const footerStyle = css`
   padding: 10px 0;
   background-color: #fff;
   text-align: center;
-`
+`;
 const copyStyle = css`
   padding: 0 12px;
   font-size: 14px;
-  color: #999;
-`
+  color: #666;
+`;
 const linkStyle = css`
   padding: 0 8px;
   font-size: 14px;
@@ -43,6 +28,6 @@ const linkStyle = css`
     color: #3363ff;
   }
   transition: all 0.2s ease-out;
-`
+`;
 
-export default Footer
+export default Footer;
