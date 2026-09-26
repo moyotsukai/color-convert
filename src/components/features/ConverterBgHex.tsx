@@ -4,6 +4,10 @@ import { RGBA } from '../../types/Colors.type'
 import SupportingText from '../ui/SupportingText'
 import TextInput from '../ui/TextInput'
 import { useBgRgbaValue, useSetBgRgba } from '../../context/BgRgbaContext'
+import { toContrastRatio } from '../../utils/contrast'
+
+const DARK_TEXT_RGBA: RGBA = { r: 37, g: 37, b: 38, a: 1 }
+const LIGHT_TEXT_RGBA: RGBA = { r: 255, g: 255, b: 255, a: 1 }
 
 const ConverterBgHex: React.FC = () => {
   const [bgRgba, setBgRgba] = [useBgRgbaValue(), useSetBgRgba()]
@@ -97,7 +101,7 @@ const groupStyle = css`
   right: 10px;
 `
 const textStyle = (rgba: RGBA) => css`
-  color: ${rgba.r + rgba.g + rgba.b > 384 ? "#4c4f59" : "#8d93a6"}
+  color: ${toContrastRatio(DARK_TEXT_RGBA, rgba) >= toContrastRatio(LIGHT_TEXT_RGBA, rgba) ? "#252526" : "#fff"}
 `
 
 export default ConverterBgHex

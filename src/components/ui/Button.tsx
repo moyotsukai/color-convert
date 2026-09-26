@@ -1,19 +1,18 @@
-import React from 'react'
-import { css } from '@emotion/react'
+import React from "react";
+import { css } from "@emotion/react";
 
 type Props = React.ComponentProps<"button"> & {
-  children: React.ReactNode,
-  style: "primary" | "secondary"
-}
+  children: React.ReactNode;
+  style: "primary" | "secondary";
+};
 
 const Button: React.FC<Props> = ({ children, style, ...props }) => {
-
   return (
     <button {...props} tabIndex={-1} css={() => buttonStyle(style)}>
       {children}
     </button>
-  )
-}
+  );
+};
 
 const buttonStyle = (style: "primary" | "secondary") => css`
   min-width: 60px;
@@ -25,12 +24,12 @@ const buttonStyle = (style: "primary" | "secondary") => css`
   border: none;
   border-radius: 3px;
   font-size: 14px;
-  color: ${style === "primary" ? "#fff" : "#5c658a"};
-  background-color: ${style === "primary" ? "#335cff" : "#dee4ff"};
+  color: ${style === "primary" ? "#fff" : "#252526"};
+  background-color: ${style === "primary" ? "#335cff" : "#deeaff"};
   &:hover {
-    background-color: ${style === "primary" ? "#5274ff" : "#e6ebff"};
+    background-color: ${style === "primary" ? "#5274ff" : "#e6efff"};
   }
   transition: 0.2s ease-in-out;
-`
+`;
 
-export default Button
+export default Button;

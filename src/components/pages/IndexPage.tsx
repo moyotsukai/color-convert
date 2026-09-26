@@ -11,6 +11,12 @@ import ConverterCMYK from "../features/ConverterCMYK";
 import Seo from "../common/Seo";
 import { useSharedRgbaValue } from "../../context/RgbaContext";
 import Palette from "../features/Palette";
+import ContrastChecker from "../features/ContrastChecker";
+import CircleIcon from "../icons/CircleIcon";
+import HeartFilledIcon from "../icons/HeartFilledIcon";
+import BellIcon from "../icons/BellIcon";
+import PlayIcon from "../icons/PlayIcon";
+import StarIcon from "../icons/StarIcon";
 
 const IndexPage: React.FC = () => {
   const sharedRgba = useSharedRgbaValue();
@@ -32,14 +38,22 @@ const IndexPage: React.FC = () => {
           css={colorBlockStyle}
         />
         <Spacer x={20} />
-        <p
+        <div
           style={{
             color: `rgba(${sharedRgba.r}, ${sharedRgba.g}, ${sharedRgba.b}, ${sharedRgba.a})`,
           }}
-          css={colorTextStyle}
+          css={sampleContainerStyle}
         >
-          Color Converter
-        </p>
+          <p css={normalTextStyle}>Normal Text</p>
+          <p css={largeTextStyle}>Large Text</p>
+          <div css={iconRowStyle}>
+            <CircleIcon size={24} />
+            <HeartFilledIcon size={24} />
+            <StarIcon size={24} />
+            <PlayIcon size={24} />
+            <BellIcon size={24} />
+          </div>
+        </div>
         <ConverterBgHex />
       </div>
 
@@ -49,6 +63,7 @@ const IndexPage: React.FC = () => {
         <ConverterHSL />
         <ConverterHSV />
         <ConverterCMYK />
+        <ContrastChecker />
         <Palette />
       </div>
     </div>
@@ -57,7 +72,7 @@ const IndexPage: React.FC = () => {
 
 const layoutStyle = css`
   min-height: 100vh;
-  background-color: #f5f7ff;
+  background-color: #f5faff;
   padding: 15px;
 `;
 const colorBackgroundStyle = css`
@@ -85,10 +100,29 @@ const colorBlockStyle = css`
   min-height: 120px;
   border-radius: 6px;
 `;
-const colorTextStyle = css`
-  font-size: 28px;
+const sampleContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 `;
-const converterContainerStyle = css`
+const largeTextStyle = css`
+  margin: 0;
+  font-size: 24px;
+  color: inherit;
+  line-height: 1.3;
+`;
+const iconRowStyle = css`
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+`;
+const normalTextStyle = css`
+  margin: 0;
+  font-size: 16px;
+  color: inherit;
+  line-height: 1.5;
+`;const converterContainerStyle = css`
   display: grid;
   margin: 0 auto;
   grid-template-columns: repeat(5, 330px);

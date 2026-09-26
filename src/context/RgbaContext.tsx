@@ -1,18 +1,26 @@
-import React, { createContext, Dispatch, SetStateAction, useContext, useState } from 'react'
-import { RGBA } from '../types/Colors.type'
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
+import { RGBA } from "../types/Colors.type";
 
-const defaultSharedRgbaValue: RGBA = { r: 255, g: 128, b: 149, a: 1 }
+const defaultSharedRgbaValue: RGBA = { r: 0, g: 101, b: 242, a: 1 };
 
-const SharedRgbaValueContext = createContext<RGBA>(defaultSharedRgbaValue)
+const SharedRgbaValueContext = createContext<RGBA>(defaultSharedRgbaValue);
 
-const SharedRgbaDispatchContext = createContext<Dispatch<SetStateAction<RGBA>>>(() => undefined)
+const SharedRgbaDispatchContext = createContext<Dispatch<SetStateAction<RGBA>>>(
+  () => undefined,
+);
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export const SharedRgbaContextProvider: React.FC<Props> = (props) => {
-  const [sharedRgb, setSharedRgb] = useState<RGBA>(defaultSharedRgbaValue)
+  const [sharedRgb, setSharedRgb] = useState<RGBA>(defaultSharedRgbaValue);
 
   return (
     <SharedRgbaValueContext.Provider value={sharedRgb}>
@@ -20,13 +28,13 @@ export const SharedRgbaContextProvider: React.FC<Props> = (props) => {
         {props.children}
       </SharedRgbaDispatchContext.Provider>
     </SharedRgbaValueContext.Provider>
-  )
-}
+  );
+};
 
 export const useSharedRgbaValue = () => {
-  return useContext(SharedRgbaValueContext)
-}
+  return useContext(SharedRgbaValueContext);
+};
 
 export const useSetSharedRgba = () => {
-  return useContext(SharedRgbaDispatchContext)
-}
+  return useContext(SharedRgbaDispatchContext);
+};
